@@ -1,12 +1,1 @@
-.a {
-  border: 1px solid blue;
-  background: red;
-}
-.a::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-.a > div {
-  float: left;
-}
+.a{overflow:hidden;display:block;width:150px;text-overflow:ellipsis;white-space:nowrap}

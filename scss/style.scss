@@ -9,13 +9,15 @@
   }
 }
 
+// 말줄임표 믹스인 만들기 (width값으로 지정할 값을 매개변수로 받고 있음.)
+@mixin ellipsis($w) {
+  overflow: hidden;
+  display: block;
+  width: $w;
+  text-overflow: ellipsis; // 요소의 영역을 벗어나는 text들에 대해서 말줄임표로 생략처리 하는 기능
+  white-space: nowrap; // 요소가 공백 문자를 처리하는 방법 지정. nowrap으로 하면 연속 공백을 하나로 합쳐줌. -> 한줄로 합쳐놓은 효과
+}
+
 .a {
-  border: 1px solid blue;
-  background: red;
-
-  @include clear();
-
-  > div {
-    float: left; // 내부의 div 요소들이 문서 흐름에서 벗어나게 됨.
-  }
+  @include ellipsis(150px);
 }
