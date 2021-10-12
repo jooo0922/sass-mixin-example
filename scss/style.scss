@@ -36,3 +36,35 @@
 .b {
   @include ellipsis2(3, 150px, 66px);
 }
+
+/*
+css에서 팝업 요소를 포지셔닝 하려면 아래와 같이 여러 개의 속성값들을 매번 달아줘야 했음.
+이제 이것을 sass의 mixin 기능을 이용해서 재사용성있게 처리할 것임.
+
+div {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 1px solid red;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+*/
+
+// 이 믹스인은 가로 사이즈를 몇으로 넣어주느냐에 따라 해당 팝업요소를 알아서 가운데로 배치시켜 줌.
+// 이렇게 믹스인을 만들어두면, 나중에 똑같은 코드를 계속 반복해서 치지 않아도 됨. -> 재사용성 증가!
+@mixin box_center($w) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: $w;
+  // 팝업 요소의 높이는 자식의 크기요소에 맞춰서 지정되도록 하면 되니까 매개변수를 따로 안넣어도 됨.
+  transform: translate(-50%, -50%);
+}
+
+div {
+  @include box_center(500px);
+  height: 200px; // 높이값을 따로 지정해줄 필요가 있다고 생각되면 여기서 지정해줘도 됨.
+  border: 1px solid red;
+}
