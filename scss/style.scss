@@ -18,6 +18,21 @@
   white-space: nowrap; // 요소가 공백 문자를 처리하는 방법 지정. nowrap으로 하면 연속 공백을 하나로 합쳐줌. -> 한줄로 합쳐놓은 효과
 }
 
+// 두 줄 이상 텍스트 말줄임표 믹스인 만들기
+@mixin ellipsis2($line, $w, $h) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line; // 위에 두 줄의 속성을 지정해줘야 line-clamp가 실행됨. -> 얘는 요소의 텍스트를 몇번째 행에서 끊을건지 결정함.
+  width: $w; // 가로 사이즈는 각 행이 얼마만큼 가서 끊길지를 정해줌.
+  height: $h; // 높이 사이즈는 얼마만큼 짤릴 지를 정의해 줌.
+  text-overflow: ellipsis;
+}
+
 .a {
   @include ellipsis(150px);
+}
+
+.b {
+  @include ellipsis2(3, 150px, 66px);
 }
